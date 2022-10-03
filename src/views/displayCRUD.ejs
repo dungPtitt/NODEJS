@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display CRUD</title>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <table style="width:100%">
+    <tr>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Email</th>
+    </tr>
+    <% for(var i=0; i < dataUser.length; i++) { %>
+      <tr>
+        <td>
+          <%= dataUser[i].firstName %>
+        </td>
+        <td>
+          <%= dataUser[i].lastName %>
+        </td>
+        <td>
+          <%= dataUser[i].email %>
+        </td>
+        <td>
+          <a href="/edit-crud?id=<%= dataUser[i].id %>" type="button">Edit</a>
+          <a href="/delete-crud?id=<%= dataUser[i].id %>" type="button">Delete</a>
+        </td>
+      </tr>
+      <% } %>
+  </table>
+</body>
+
+</html>
