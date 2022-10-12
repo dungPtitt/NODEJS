@@ -38,13 +38,13 @@ let handleGetUser = async (req, res) => {
 
 let handleCreateUser = async (req, res) => {
   let data = req.body;
-  let massage = await userService.createUser(data);
   if (!data) {
     return res.status(200).json({
       errCode: 1,
       errMassage: "Missing info"
     })
   }
+  let massage = await userService.createUser(data);
   return res.status(200).json(massage)
 }
 

@@ -1,6 +1,7 @@
 import express from "express";
 import homeController from "../controlers/homeControllers";
-import userController from "../controlers/userController"
+import userController from "../controlers/userController";
+import tourController from "../controlers/tourController";
 
 let router = express.Router()
 
@@ -23,6 +24,8 @@ let initWebRoutes = (app) => {
   router.delete("/api/delete-user", userController.handleDeleteUser);
 
   router.get("/api/get-allcode", userController.handleGetAllcode);
+  router.get("/api/get-tour", tourController.handleGetTour);
+  router.post("/api/create-tour", tourController.handleCreateTour);
   return app.use("/", router);
 }
 
