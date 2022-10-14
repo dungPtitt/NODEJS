@@ -1,3 +1,4 @@
+// import { literal } from 'sequelize/types'
 import userService from '../services/userService'
 
 let handleLogin = async (req, res) => {
@@ -34,6 +35,27 @@ let handleGetUser = async (req, res) => {
     errMassage: "OK",
     user
   })
+}
+
+let handleGetMember = async (req, res) => {
+  try {
+    let limit = req.query.limit;
+    console.log(limit)
+    if (limit) {
+      let info = await userService.getMember(+limit)
+      return res.status(200).json(info)
+    }
+    return res.status(200).json({
+      errCode: 1,
+      errMassage: "Missing input parameter"
+    })
+  } catch (e) {
+    // console.log(e)
+    return res.status(200).json({
+      errCode: -1,
+      errMassage: "Error from server!"
+    })
+  }
 }
 
 let handleCreateUser = async (req, res) => {
@@ -85,4 +107,5 @@ module.exports = {
   handleUpdateUser: handleUpdateUser,
   handleDeleteUser: handleDeleteUser,
   handleGetAllcode: handleGetAllcode,
+  handleGetMember: handleGetMember,
 }

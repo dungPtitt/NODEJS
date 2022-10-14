@@ -88,6 +88,29 @@ let getUser = (id) => {
   })
 }
 
+let getMember = (limitInput) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let res = await db.User.findAll({
+        where: {
+          roleId: "R2"
+        },
+        // attributes: [],
+        limit: limitInput,
+        order: [['id', 'DESC']],
+        // offset: 0,
+      })
+      resolve({
+        errCode: 0,
+        message: "Get member success",
+        data: res
+      })
+    } catch (e) {
+      reject(e)
+    }
+  })
+}
+
 let createUser = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -206,4 +229,5 @@ module.exports = {
   updateUser: updateUser,
   delelteUser: delelteUser,
   getAllcode: getAllcode,
+  getMember: getMember,
 }

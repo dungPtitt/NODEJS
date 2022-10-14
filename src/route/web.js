@@ -2,6 +2,7 @@ import express from "express";
 import homeController from "../controlers/homeControllers";
 import userController from "../controlers/userController";
 import tourController from "../controlers/tourController";
+import audienceController from "../controlers/audienceController";
 
 let router = express.Router()
 
@@ -26,6 +27,10 @@ let initWebRoutes = (app) => {
   router.get("/api/get-allcode", userController.handleGetAllcode);
   router.get("/api/get-tour", tourController.handleGetTour);
   router.post("/api/create-tour", tourController.handleCreateTour);
+  // audience
+  router.post("/api/audience-booking-ticket", audienceController.postBookingTicket);
+
+  router.get("/api/get-member", userController.handleGetMember);
   return app.use("/", router);
 }
 
