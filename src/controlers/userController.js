@@ -40,7 +40,6 @@ let handleGetUser = async (req, res) => {
 let handleGetMember = async (req, res) => {
   try {
     let limit = req.query.limit;
-    console.log(limit)
     if (limit) {
       let info = await userService.getMember(+limit)
       return res.status(200).json(info)

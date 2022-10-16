@@ -21,6 +21,30 @@ let postBookingTicket = async (req, res) => {
   }
 }
 
+let postVerifyBookingTicket = async (req, res) => {
+  try {
+    if (!req.body) {
+
+      return res.status(200).json({
+        errCode: 1,
+        errMassage: "Missing info"
+      })
+    } else {
+      console.log("check data from server: ", req.body)
+      let response = await audienceService.postVerifyBookingTicket(req.body);
+      return res.status(200).json(response)
+    }
+
+  } catch (e) {
+    console.log(e)
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Err from server"
+    })
+  }
+}
+
 module.exports = {
-  postBookingTicket: postBookingTicket
+  postBookingTicket: postBookingTicket,
+  postVerifyBookingTicket: postVerifyBookingTicket,
 }

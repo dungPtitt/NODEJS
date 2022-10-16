@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     des: DataTypes.TEXT,
     image: DataTypes.BLOB,
-
+    date: DataTypes.STRING,
+    quantityMax: DataTypes.INTEGER,
+    quantityCurrent: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Tour',

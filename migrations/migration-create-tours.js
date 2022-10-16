@@ -20,6 +20,15 @@ module.exports = {
       image: {
         type: Sequelize.BLOB,
       },
+      date: {
+        type: Sequelize.STRING,
+      },
+      quantityMax: {
+        type: Sequelize.INTEGER,
+      },
+      quantityCurrent: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -30,7 +30,10 @@ let createTour = (data) => {
         name: data.name,
         address: data.address,
         des: data.des,
-        image: data.image
+        image: data.image,
+        date: data.date,
+        quantityMax: data.quantityMax,
+        quantityCurrent: data.quantityCurrent
       })
       resolve({
         errCode: 0,

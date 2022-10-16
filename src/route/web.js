@@ -29,6 +29,7 @@ let initWebRoutes = (app) => {
   router.post("/api/create-tour", tourController.handleCreateTour);
   // audience
   router.post("/api/audience-booking-ticket", audienceController.postBookingTicket);
+  router.post("/api/verify-booking-ticket", audienceController.postVerifyBookingTicket);
 
   router.get("/api/get-member", userController.handleGetMember);
   return app.use("/", router);
