@@ -5,7 +5,7 @@ let postBookingTicket = async (req, res) => {
     if (!req.body) {
       return res.status(200).json({
         errCode: 1,
-        errMassage: "Missing info"
+        errMessage: "Missing info"
       })
     } else {
       let response = await audienceService.postBookingTicket(req.body);
@@ -27,7 +27,7 @@ let postVerifyBookingTicket = async (req, res) => {
 
       return res.status(200).json({
         errCode: 1,
-        errMassage: "Missing info"
+        errMessage: "Missing info"
       })
     } else {
       console.log("check data from server: ", req.body)

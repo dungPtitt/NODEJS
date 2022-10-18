@@ -21,8 +21,8 @@ let getCRUD = (req, res) => {
   return res.render("crud.ejs")
 }
 let postCURD = async (req, res) => {
-  let massage = await CRUDservice.createUser(req.body)
-  console.log(massage)
+  let message = await CRUDservice.createUser(req.body)
+  console.log(message)
   return res.send("date user")
 }
 

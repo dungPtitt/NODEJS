@@ -20,22 +20,22 @@ let handleUserLogin = (email, password) => {
           let check = await bcrypt.compare(password, user.password);
           if (check) {
             dataUser.errCode = 0;
-            dataUser.errMassage = 'OK';
+            dataUser.errMessage = 'OK';
             delete user['password'];
             dataUser.userInfo = user;
           } else {
             dataUser.errCode = 3,
-              dataUser.errMassage = 'Wrong password'
+              dataUser.errMessage = 'Wrong password'
           }
         }
         else {
           dataUser.errCode = 2,
-            dataUser.errMassage = 'User not found!'
+            dataUser.errMessage = 'User not found!'
         }
       }
       else {
         dataUser.errCode = 1,
-          dataUser.errMassage = 'Your email not exit. Please try other!'
+          dataUser.errMessage = 'Your email not exit. Please try other!'
       }
       resolve(dataUser)
     } catch (e) {
@@ -118,7 +118,7 @@ let createUser = (data) => {
       if (check) {
         resolve({
           errCode: 2,
-          errMassage: "Email is already used"
+          errMessage: "Email is already used"
         })
       }
       else {
@@ -136,7 +136,7 @@ let createUser = (data) => {
         })
         resolve({
           errCode: 0,
-          massage: "OK"
+          message: "OK"
         })
       }
 
@@ -152,7 +152,7 @@ let updateUser = (data) => {
       if (!data.id) {
         resolve({
           errCode: 1,
-          errMassage: "Missing input parametors."
+          errMessage: "Missing input parametors."
         })
       }
       let user = await db.User.findOne({
@@ -162,7 +162,7 @@ let updateUser = (data) => {
       if (!user) {
         resolve({
           errCode: 2,
-          errMassage: "User not found!"
+          errMessage: "User not found!"
         })
       }
       user.firstName = data.firstName;
@@ -171,7 +171,7 @@ let updateUser = (data) => {
       user.save();
       resolve({
         errCode: 0,
-        massage: "Ok"
+        message: "Ok"
       })
     } catch (e) {
       reject(e)
@@ -190,7 +190,7 @@ let delelteUser = (userId) => {
       if (!user) {
         resolve({
           errCode: 2,
-          errMassage: "User isn't exit",
+          errMessage: "User isn't exit",
         })
       }
       await user.destroy()
@@ -199,7 +199,7 @@ let delelteUser = (userId) => {
       // })
       resolve({
         errCode: 0,
-        massage: "Ok"
+        message: "Ok"
       })
     } catch (e) {
       reject(e)
@@ -215,7 +215,7 @@ let getAllcode = (inputType) => {
         where: { type: inputType }
       });
       res.errCode = 0;
-      res.massage = 'ok';
+      res.message = 'ok';
       res.data = allcode;
       resolve(res)
     } catch (err) {

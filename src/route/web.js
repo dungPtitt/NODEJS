@@ -26,7 +26,12 @@ let initWebRoutes = (app) => {
 
   router.get("/api/get-allcode", userController.handleGetAllcode);
   router.get("/api/get-tour", tourController.handleGetTour);
+  router.get("/api/get-all-tour", tourController.handleGetAllTour);
+  router.get("/api/get-memorable-tour", tourController.handleGetMemorableTour);
   router.post("/api/create-tour", tourController.handleCreateTour);
+  router.post("/api/edit-tour", tourController.handleEditTour);
+  router.delete("/api/delete-tour", tourController.handleDeleteTour);
+
   // audience
   router.post("/api/audience-booking-ticket", audienceController.postBookingTicket);
   router.post("/api/verify-booking-ticket", audienceController.postVerifyBookingTicket);
