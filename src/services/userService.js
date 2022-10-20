@@ -88,6 +88,28 @@ let getUser = (id) => {
   })
 }
 
+let getAllUser = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let dataUsers = await db.User.findAll();
+      if (dataUsers) {
+        resolve({
+          errCode: 2,
+          errMessage: "Get User failed!"
+        })
+      } else {
+        resolve({
+          errCode: 0,
+          message: "Get user success",
+          users: dataUsers
+        })
+      }
+    } catch (e) {
+      reject(e);
+    }
+  })
+}
+
 let getMember = (limitInput) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -186,7 +208,6 @@ let delelteUser = (userId) => {
         where: { id: userId },
         raw: false
       })
-      // console.log(user)
       if (!user) {
         resolve({
           errCode: 2,
@@ -194,12 +215,9 @@ let delelteUser = (userId) => {
         })
       }
       await user.destroy()
-      // await db.User.destroy({
-      //   where: { id: userId }
-      // })
       resolve({
         errCode: 0,
-        message: "Ok"
+        message: "Deleted success"
       })
     } catch (e) {
       reject(e)
@@ -231,4 +249,5 @@ module.exports = {
   delelteUser: delelteUser,
   getAllcode: getAllcode,
   getMember: getMember,
+  getAllUser: getAllUser,
 }

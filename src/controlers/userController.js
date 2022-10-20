@@ -5,7 +5,7 @@ let handleLogin = async (req, res) => {
   let email = req.body.email
   let password = req.body.password
   if (!email || !password) {
-    return res.status(500).json({
+    return res.status(200).json({
       errCode: 1,
       message: 'Missing input params'
     })
@@ -35,6 +35,18 @@ let handleGetUser = async (req, res) => {
     errMessage: "OK",
     user
   })
+}
+
+let handleGetAllUser = async (req, res) => {
+  try {
+    let response = await userService.getAllUser()
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server!"
+    })
+  }
 }
 
 let handleGetMember = async (req, res) => {
@@ -76,15 +88,22 @@ let handleUpdateUser = async (req, res) => {
 }
 
 let handleDeleteUser = async (req, res) => {
-  let useId = req.body.id;
-  if (!useId) {
-    return res.status(200).json({
-      errCode: 1,
-      errMessage: "Misssing input parametor."
+  try {
+    let useId = req.body.id;
+    if (!useId) {
+      return res.status(200).json({
+        errCode: 1,
+        errMessage: "Misssing input parametor."
+      })
+    }
+    let message = await userService.delelteUser(useId);
+    return res.status(200).json(message)
+  } catch (e) {
+    res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server!"
     })
   }
-  let message = await userService.delelteUser(useId);
-  return res.status(200).json(message)
 }
 
 let handleGetAllcode = async (req, res) => {
@@ -107,4 +126,5 @@ module.exports = {
   handleDeleteUser: handleDeleteUser,
   handleGetAllcode: handleGetAllcode,
   handleGetMember: handleGetMember,
+  handleGetAllUser: handleGetAllUser,
 }
